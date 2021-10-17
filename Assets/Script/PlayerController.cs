@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
         else if(speed > 0) {
             scale.x = Mathf.Abs(scale.x);
         }
+        
         transform.localScale = scale;
     }
 }
