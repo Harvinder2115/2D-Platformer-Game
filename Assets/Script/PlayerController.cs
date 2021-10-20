@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Animator animator;
-    public float speed, jump;
+    public float speed, jump, crouch;
     public Rigidbody2D rb2d;
     //for fixjump
     public Transform feetPos;
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
         position.x += horizontal * speed * Time.deltaTime;
         transform.position = position;
 
-        //Move character vertically
+        //Move character vertically (Jump)
         // if(vertical > 0)
         // {
         //     rb2d.AddForce(new Vector2(0f, jump), ForceMode2D.Force);
@@ -71,5 +71,27 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("Jump", false);
         }
+
+        // Crouch 
+        if(isGrounded == true && Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            animator.SetBool("Crouch", true);
+        }
+        else
+        {
+            animator.SetBool("Crouch", false);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D MP) 
+    {
+        if (MP.gameObject.name.Equals ("MovingPlatform"))
+            this.transform.parent = MP.transform;   
+    }
+
+        private void OnCollisionExit2D(Collision2D MP) 
+    {
+        if (MP.gameObject.name.Equals ("MovingPlatform"))
+            this.transform.parent = null;   
     }
 }
