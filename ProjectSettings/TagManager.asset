@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - MovingPlatform
+  - Door
   layers:
   - Default
   - TransparentFX

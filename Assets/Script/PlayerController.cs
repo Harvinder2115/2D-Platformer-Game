@@ -94,4 +94,9 @@ public class PlayerController : MonoBehaviour
         if (MP.gameObject.name.Equals ("MovingPlatform"))
             this.transform.parent = null;   
     }
+
+    public void PickUpKey()
+    {
+        Debug.Log("Player pickup the key");
+    }
 }
