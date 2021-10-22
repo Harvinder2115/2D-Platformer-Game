@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public Transform feetPos;
     private bool isGrounded;
     public float checkRadious;
+    public ScoreController scoreController;
 
     // private void Awake() 
     // {
@@ -95,8 +96,10 @@ public class PlayerController : MonoBehaviour
             this.transform.parent = null;   
     }
 
+    // Key pickUp
     public void PickUpKey()
     {
         Debug.Log("Player pickup the key");
+        scoreController.IncreaseScore(100);
     }
 }

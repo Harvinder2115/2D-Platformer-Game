@@ -9,9 +9,9 @@ public class MovingPlatform : MonoBehaviour
 
     private void Update() 
     {
-        if (transform.position.x > 1f * Mathf.Abs(1))
+        if (transform.position.x > 1f )
             moveRight = false;
-        else if (transform.position.x < -1f * Mathf.Abs(1))
+        else if (transform.position.x < -1f )
                 moveRight = true;
 
         if (moveRight)

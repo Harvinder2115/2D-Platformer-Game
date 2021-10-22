@@ -6,9 +6,12 @@ public class LevelCompleted : MonoBehaviour
 {
     public GameManager gameManager;
 
-    void OnTriggerEnter2D(Collider2D levelDoor)
+    private void OnTriggerEnter2D(Collider2D levelDoor)
     {
-        // GameManager.l
+        if (levelDoor.gameObject.GetComponent<PlayerController>() != null)
+        {
+            Debug.Log("Level Finished by the Player");
+        }
     }
 }
 

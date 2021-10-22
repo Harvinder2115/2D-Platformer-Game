@@ -5,6 +5,11 @@ public class GameManager : MonoBehaviour
 {
     bool gameHasEnded = false;
     public float restarDelay = 1f;
+    
+    public void levelCompleted()
+    {
+         Debug.Log("Level Completed");
+    }
 
     public void EndGame()
     {
