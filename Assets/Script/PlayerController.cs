@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public ScoreController scoreController;
     public Animator animator;
     public float speed, jump, crouch;
     public Rigidbody2D rb2d;
@@ -11,7 +13,8 @@ public class PlayerController : MonoBehaviour
     public Transform feetPos;
     private bool isGrounded;
     public float checkRadious;
-    public ScoreController scoreController;
+    public float restarDelay = 1f;
+
 
     // private void Awake() 
     // {
@@ -101,5 +104,21 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Player pickup the key");
         scoreController.IncreaseScore(100);
+    }
+
+        // Kill Player
+    public void KillPlayer()
+    {
+        Debug.Log("Player Kill by Enemy");
+        //Destroy(gameObject);
+        ReloadLevel();
+    }
+
+    private void ReloadLevel()
+    {
+        gameObject.GetComponent<GameManager>();
+        Invoke("Restart", restarDelay);
+        SceneManager.LoadScene(0);
+        
     }
 }

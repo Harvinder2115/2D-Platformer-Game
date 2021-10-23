@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     
     public void levelCompleted()
     {
-         Debug.Log("Level Completed");
+        Debug.Log("Level Completed");
     }
 
     public void EndGame()
@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(0);
     }
 
 }
