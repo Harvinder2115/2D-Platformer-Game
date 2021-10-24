@@ -7,7 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     public ScoreController scoreController;
     public Animator animator;
-    public float speed, jump, crouch;
+    public float speed, jump;
+    public float runSpeed = 4;
     public Rigidbody2D rb2d;
     //for fixjump
     public Transform feetPos;
@@ -81,10 +82,27 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("Crouch", true);
         }
-        else
+        else if (isGrounded == true && Input.GetKeyUp(KeyCode.LeftControl))
         {
             animator.SetBool("Crouch", false);
         }
+
+        //Fast Run
+        if(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            animator.SetBool("runKey", true);
+            speed = speed + runSpeed;
+        }
+            
+        else if (isGrounded == true && Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            animator.SetBool("runKey", false);
+            speed -= runSpeed;
+        }
+
+        // Player Hurt
+        // if()
+
     }
 
     private void OnCollisionEnter2D(Collision2D MP) 
@@ -118,7 +136,9 @@ public class PlayerController : MonoBehaviour
     {
         gameObject.GetComponent<GameManager>();
         Invoke("Restart", restarDelay);
-        SceneManager.LoadScene(0);
-        
+        SceneManager.LoadScene(0);  
     }
+
+    // Level Completed
+    
 }
