@@ -163,6 +163,10 @@ PrefabInstance:
       value: 2.0044732
       objectReference: {fileID: 0}
     - target: {fileID: 818886296, guid: 10ef554a8ea605241afc676fe09ea2ef, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 818886296, guid: 10ef554a8ea605241afc676fe09ea2ef, type: 3}
       propertyPath: m_Offset.y
       value: 1.0189052
       objectReference: {fileID: 0}
@@ -214,12 +218,12 @@ PrefabInstance:
     - target: {fileID: 2522210442567164892, guid: 10ef554a8ea605241afc676fe09ea2ef,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.27
+      value: -10.73
       objectReference: {fileID: 0}
     - target: {fileID: 2522210442567164892, guid: 10ef554a8ea605241afc676fe09ea2ef,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.91
+      value: -1.85
       objectReference: {fileID: 0}
     - target: {fileID: 2522210442567164892, guid: 10ef554a8ea605241afc676fe09ea2ef,
         type: 3}
@@ -1423,7 +1427,7 @@ GameObject:
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &356227321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1439,6 +1443,7 @@ MonoBehaviour:
   speed: 0
   distance: 0
   groundDetection: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!61 &356227322
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6226,6 +6231,13 @@ MonoBehaviour:
   speed: 2
   distance: 1
   groundDetection: {fileID: 565659605}
+  animator: {fileID: 1773840923}
+--- !u!95 &1773840923 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6430433814357797259, guid: d1b40954e502cfd43baea9250295a551,
+    type: 3}
+  m_PrefabInstance: {fileID: 902640673}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1778180334
 GameObject:
   m_ObjectHideFlags: 0
@@ -6435,6 +6447,7 @@ MonoBehaviour:
   speed: 2
   distance: 1
   groundDetection: {fileID: 1772607359}
+  animator: {fileID: 1861622355}
 --- !u!50 &1861622353
 Rigidbody2D:
   serializedVersion: 4
@@ -6456,6 +6469,12 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &1861622355 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6430433814357797259, guid: d1b40954e502cfd43baea9250295a551,
+    type: 3}
+  m_PrefabInstance: {fileID: 1316424779}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1951712661
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6568,6 +6587,13 @@ MonoBehaviour:
   speed: 2
   distance: 1
   groundDetection: {fileID: 16981238}
+  animator: {fileID: 2050778496}
+--- !u!95 &2050778496 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6430433814357797259, guid: d1b40954e502cfd43baea9250295a551,
+    type: 3}
+  m_PrefabInstance: {fileID: 6430433812375178485}
+  m_PrefabAsset: {fileID: 0}
 --- !u!50 &2050778498
 Rigidbody2D:
   serializedVersion: 4
@@ -6847,7 +6873,7 @@ PrefabInstance:
     - target: {fileID: 6430433814357797256, guid: d1b40954e502cfd43baea9250295a551,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20.24
+      value: -20.13
       objectReference: {fileID: 0}
     - target: {fileID: 6430433814357797256, guid: d1b40954e502cfd43baea9250295a551,
         type: 3}

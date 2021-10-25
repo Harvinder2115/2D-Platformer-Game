@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.LeftShift))
         {
             animator.SetBool("runKey", true);
-            speed = speed + runSpeed;
+            speed += runSpeed;
         }
             
         else if (isGrounded == true && Input.GetKeyUp(KeyCode.LeftShift))
@@ -129,7 +129,10 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Player Kill by Enemy");
         //Destroy(gameObject);
-        ReloadLevel();
+        //gameObject.name.Equals ("Enemy").GetComponent<BoxCollider2D>();
+        //gameObject.CompareTag("Enemy")
+        animator.SetBool("Enemy", true);
+        //ReloadLevel();
     }
 
     private void ReloadLevel()

@@ -8,14 +8,21 @@ public class EnemyController : MonoBehaviour
     public float distance;
     public Transform groundDetection;
     private bool movingRight = true;
+    public Animator animator;
 
     private void OnCollisionEnter2D(Collision2D other) 
     {
         if (other.gameObject.GetComponent<PlayerController>())
         {
             PlayerController playerController = other.gameObject.GetComponent<PlayerController>();
+            animator.SetBool("Attack", true);
             playerController.KillPlayer();
             //Destroy(gameObject);
+        }
+
+        else
+        {
+            animator.SetBool("Attack", false);
         }
 
 // if(groundDetection.gameObject.CompareTag("Door")){
@@ -26,6 +33,7 @@ public class EnemyController : MonoBehaviour
 
     }
 
+    // For Animation
     //Enemy Patroling
 
     private void Update()
@@ -46,7 +54,6 @@ public class EnemyController : MonoBehaviour
                 movingRight = true;
             }
         }
-            
     }
 
 }
