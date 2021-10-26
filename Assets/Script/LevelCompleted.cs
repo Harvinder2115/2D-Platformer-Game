@@ -13,7 +13,7 @@ public class LevelCompleted : MonoBehaviour
         {
             Debug.Log("Level Finished by the Player");
             //gameObject.GetComponent<>;
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
     }
 }
