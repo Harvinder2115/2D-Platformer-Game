@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public ScoreController scoreController;
+    public GameOverController gameOverController;
     public Animator animator;
     public float speed, jump;
     public float runSpeed = 4;
@@ -14,7 +15,7 @@ public class PlayerController : MonoBehaviour
     public Transform feetPos;
     private bool isGrounded;
     public float checkRadious;
-    public float restarDelay = 1f;
+    public float restarDelay = 480;
 
 
     // private void Awake() 
@@ -132,14 +133,19 @@ public class PlayerController : MonoBehaviour
         //gameObject.name.Equals ("Enemy").GetComponent<BoxCollider2D>();
         //gameObject.CompareTag("Enemy")
         animator.SetBool("Enemy", true);
+        //SceneManager.LoadScene(1);
+        StartCoroutine(LoadLevelAfterDelay(restarDelay));
+        Debug.Log("Game Over");
+
+        //animator.SetBool("GameOver", true);
         //ReloadLevel();
+        this.enabled = false;
     }
 
-    private void ReloadLevel()
+    IEnumerator LoadLevelAfterDelay(float restarDelay)
     {
-        gameObject.GetComponent<GameManager>();
-        Invoke("Restart", restarDelay);
-        SceneManager.LoadScene(0);  
+        yield return new WaitForSeconds(restarDelay);
+        SceneManager.LoadScene(2);
     }
 
     // Level Completed
