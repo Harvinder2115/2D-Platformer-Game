@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Iteams
   - Wall & Ground
+  - turn
   layers:
   - Default
   - TransparentFX

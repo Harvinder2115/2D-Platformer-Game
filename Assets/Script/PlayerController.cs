@@ -6,22 +6,27 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public ScoreController scoreController;
-    public GameOverController gameOverController;
+    //public GameOverController gameOverController;
     public Animator animator;
     public float speed, jump;
     public float runSpeed = 4;
     public Rigidbody2D rb2d;
     //for fixjump
-    public Transform feetPos;
-    private bool isGrounded;
+    // public Transform feetPos;
+    private BoxCollider2D boxCollider2D;
+    public LayerMask platformlayerMask;
     public float checkRadious;
-    public float restarDelay = 480;
+    //public float restarDelay = 40;
+    public GameObject[] hearts;
+    private int life;
+    private bool dead;
 
 
-    // private void Awake() 
-    // {
-    //     rb2d = gameObject.GetComponent<Rigidbody2D>(); 
-    // }
+    private void Awake() 
+    {
+        rb2d = gameObject.GetComponent<Rigidbody2D>(); 
+        boxCollider2D = transform.GetComponent<BoxCollider2D>();
+    }
 
     private void Update() 
     {
@@ -31,7 +36,22 @@ public class PlayerController : MonoBehaviour
         PlayMovemantAnimation(horizontal, vertical);
         MoveCharacter(horizontal, vertical);
 
-        isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadious);
+        // Kill Player
+        if (dead == true)
+        {
+            animator.SetBool("Enemy", true);
+            StartCoroutine(gameOver());
+            Debug.Log("Game Over");
+            this.enabled = false;
+        }
+    }
+
+    private bool isGrounded()
+    {
+        RaycastHit2D raycastHit2D = Physics2D.BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size, 0f, Vector2.down, 1f, platformlayerMask);
+        return raycastHit2D.collider != null;
+        // Physics2D.OverlapCircle(feetPos.position, checkRadious);
+        // return 0;
     }
 
     private void MoveCharacter(float horizontal, float vertical)
@@ -48,7 +68,7 @@ public class PlayerController : MonoBehaviour
         // }
 
         // fix jump
-        if(isGrounded == true && Input.GetKeyDown(KeyCode.Space))
+        if(isGrounded() == true && Input.GetKeyDown(KeyCode.Space))
         {
             rb2d.velocity = Vector2.up * jump;
         }
@@ -79,11 +99,11 @@ public class PlayerController : MonoBehaviour
         }
 
         // Crouch 
-        if(isGrounded == true && Input.GetKeyDown(KeyCode.LeftControl))
+        if(isGrounded () && Input.GetKeyDown(KeyCode.LeftControl))
         {
             animator.SetBool("Crouch", true);
         }
-        else if (isGrounded == true && Input.GetKeyUp(KeyCode.LeftControl))
+        else if (isGrounded () && Input.GetKeyUp(KeyCode.LeftControl))
         {
             animator.SetBool("Crouch", false);
         }
@@ -95,7 +115,7 @@ public class PlayerController : MonoBehaviour
             speed += runSpeed;
         }
             
-        else if (isGrounded == true && Input.GetKeyUp(KeyCode.LeftShift))
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             animator.SetBool("runKey", false);
             speed -= runSpeed;
@@ -128,26 +148,46 @@ public class PlayerController : MonoBehaviour
         // Kill Player
     public void KillPlayer()
     {
-        Debug.Log("Player Kill by Enemy");
-        //Destroy(gameObject);
-        //gameObject.name.Equals ("Enemy").GetComponent<BoxCollider2D>();
-        //gameObject.CompareTag("Enemy")
-        animator.SetBool("Enemy", true);
-        //SceneManager.LoadScene(1);
-        StartCoroutine(LoadLevelAfterDelay(restarDelay));
-        Debug.Log("Game Over");
+        //animator.SetBool("Hurt",true);
+        if (life >= 1)
+        {
+            //animator.SetBool("Hurt", true);
+            life -= 1;
+            Destroy(hearts[life].gameObject);
+            if (life < 1)
+            {
+                dead = true;
+            }
+        }
+        // Debug.Log("Player Kill by Enemy");
+        // //Destroy(gameObject);
+        // //gameObject.name.Equals ("Enemy").GetComponent<BoxCollider2D>();
+        // //gameObject.CompareTag("Enemy")
+        // animator.SetBool("Enemy", true);
+        // //SceneManager.LoadScene(4);
+        // StartCoroutine(gameOver());
+        // Debug.Log("Game Over");
 
-        //animator.SetBool("GameOver", true);
-        //ReloadLevel();
-        this.enabled = false;
+        // //animator.SetBool("GameOver", true);
+        // //ReloadLevel();
+        // this.enabled = false;
     }
 
-    IEnumerator LoadLevelAfterDelay(float restarDelay)
+    // private void heartdestroy()
+    // {
+        
+    // }
+
+    IEnumerator gameOver()
     {
-        yield return new WaitForSeconds(restarDelay);
-        SceneManager.LoadScene(2);
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene(4);
     }
 
     // Level Completed
+    private void Start() 
+    {
+        life = hearts.Length;
+    }
     
 }
