@@ -18,7 +18,7 @@ public class EnemyController : MonoBehaviour
         if (other.gameObject.GetComponent<PlayerController>())
         {
             PlayerController playerController = other.gameObject.GetComponent<PlayerController>();
-            //animator.SetBool("Attack", true);
+            animator.SetBool("Attack", true);
             playerController.KillPlayer();
             //Destroy(gameObject);
         }

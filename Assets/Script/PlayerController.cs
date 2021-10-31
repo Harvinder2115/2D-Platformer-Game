@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
+// using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public float checkRadious;
     //public float restarDelay = 40;
     public GameObject[] hearts;
+    public GameObject gameover;
     private int life;
     private bool dead;
 
@@ -181,7 +182,8 @@ public class PlayerController : MonoBehaviour
     IEnumerator gameOver()
     {
         yield return new WaitForSeconds(3f);
-        SceneManager.LoadScene(4);
+        //SceneManager.LoadScene(5);
+        gameover.SetActive(true);
     }
 
     // Level Completed
