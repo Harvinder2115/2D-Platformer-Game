@@ -1488,9 +1488,9 @@ GameObject:
   - component: {fileID: 356227323}
   - component: {fileID: 356227322}
   - component: {fileID: 356227321}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DownGround
-  m_TagString: Untagged
+  m_TagString: downGround
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1520,7 +1520,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 2.311306, y: 0}
@@ -6490,7 +6490,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1739585648}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6aec6abcef9223940897b22ae91366df, type: 3}
+  m_Script: {fileID: 11500000, guid: 667ede63c852d27468772740d50111c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}

@@ -38,13 +38,21 @@ public class PlayerController : MonoBehaviour
         MoveCharacter(horizontal, vertical);
 
         // Kill Player
-        if (dead == true)
-        {
-            animator.SetBool("Enemy", true);
-            StartCoroutine(gameOver());
-            Debug.Log("Game Over");
-            this.enabled = false;
-        }
+        // if (dead == true)
+        // {
+        //     animator.SetBool("Enemy", true);
+        //     StartCoroutine(gameOver());
+        //     Debug.Log("Game Over");
+        //     this.enabled = false;
+        // }
+    }
+
+    public void killPlayer()
+    {
+        animator.SetBool("Enemy", true);
+        //StartCoroutine(gameOver());
+        Debug.Log("Game Over");
+        this.enabled = false;
     }
 
     private bool isGrounded()
@@ -139,6 +147,15 @@ public class PlayerController : MonoBehaviour
             this.transform.parent = null;   
     }
 
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.CompareTag("downGround"))
+            {
+                killPlayer();
+                //gameOver.SetActive
+            }
+        }
+
     // Key pickUp
     public void PickUpKey()
     {
@@ -147,7 +164,7 @@ public class PlayerController : MonoBehaviour
     }
 
         // Kill Player
-    public void KillPlayer()
+    public void hurtPlayer()
     {
         //animator.SetBool("Hurt",true);
         if (life >= 1)
@@ -157,7 +174,8 @@ public class PlayerController : MonoBehaviour
             Destroy(hearts[life].gameObject);
             if (life < 1)
             {
-                dead = true;
+                StartCoroutine(gameOver());
+                killPlayer();
             }
         }
         // Debug.Log("Player Kill by Enemy");
@@ -173,11 +191,6 @@ public class PlayerController : MonoBehaviour
         // //ReloadLevel();
         // this.enabled = false;
     }
-
-    // private void heartdestroy()
-    // {
-        
-    // }
 
     IEnumerator gameOver()
     {

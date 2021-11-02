@@ -12,8 +12,10 @@ public class LevelCompleted : MonoBehaviour
         if (levelDoor.gameObject.GetComponent<PlayerController>() != null)
         {
             Debug.Log("Level Finished by the Player");
+            //LevelManager.Instance.SetLevelStatus(SceneManager.GetActiveScene().name, LevelStatus.Completed);
             //gameObject.GetComponent<>;
-            SceneManager.LoadScene(1);
+            LevelManager.Instance.MarkCurrentLevelComplete();
+            //SceneManager.LoadScene(2);
         }
     }
 }

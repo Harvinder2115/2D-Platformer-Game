@@ -19,7 +19,7 @@ public class EnemyController : MonoBehaviour
         {
             PlayerController playerController = other.gameObject.GetComponent<PlayerController>();
             animator.SetBool("Attack", true);
-            playerController.KillPlayer();
+            playerController.hurtPlayer();
             //Destroy(gameObject);
         }
 
@@ -29,7 +29,6 @@ public class EnemyController : MonoBehaviour
             //animator.SetBool("Hurt", false);
         }
     }
-
 
     void OnTriggerEnter2D(Collider2D trig)
     {
