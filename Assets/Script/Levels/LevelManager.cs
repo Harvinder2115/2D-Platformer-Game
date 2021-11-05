@@ -1,5 +1,5 @@
 using UnityEngine;
-//using System.Collections;
+using System;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour 
@@ -7,7 +7,7 @@ public class LevelManager : MonoBehaviour
     private static LevelManager instance;
     public static LevelManager Instance { get { return instance; } }
 
-    public string Level1;
+    public string[] Levels;
 
     private void Awake() 
     {
@@ -24,9 +24,9 @@ public class LevelManager : MonoBehaviour
 
     private void Start() 
     {
-        if (GetLevelStatus(Level1) == LevelStatus.Locked)
+        if (GetLevelStatus(Levels[0]) == LevelStatus.Locked)
         {
-            SetLevelStatus(Level1, LevelStatus.Unlocked);
+            SetLevelStatus(Levels[0], LevelStatus.Unlocked);
         }    
     }
 
@@ -38,12 +38,17 @@ public class LevelManager : MonoBehaviour
         SetLevelStatus(currentScene.name, LevelStatus.Completed);
 
         // unlock next level
-        int nextSceneIndex = currentScene.buildIndex + 1;
-        Scene nextScene = SceneManager.GetSceneByBuildIndex(nextSceneIndex);//GetSceneAt(nextSceneIndex);
-        SetLevelStatus(nextScene.name, LevelStatus.Unlocked);
+
+        int currentSceneIndex = Array.FindIndex(Levels, level => level == currentScene.name);
+        int nextSceneIndex = currentSceneIndex + 1;
+
+        if (nextSceneIndex < Levels.Length)
+        {
+            SetLevelStatus(Levels[nextSceneIndex], LevelStatus.Unlocked);
+        }        
 
         //Move to next Level
-        SceneManager.LoadScene(nextSceneIndex);
+        //SceneManager.LoadScene(nextSceneIndex);
     }
 
     public LevelStatus GetLevelStatus(string level)
