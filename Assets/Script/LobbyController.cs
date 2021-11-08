@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+//using UnityEngine.SceneManagement;
 
 public class LobbyController : MonoBehaviour
 {
@@ -18,7 +18,7 @@ public class LobbyController : MonoBehaviour
 
     private void PlayGame()
     {
-        //SceneManager.LoadScene(1);
+        SoundManager.Instance.Play(Sounds.ButtonClick);
         LevelSelection.SetActive(true);
     }
 

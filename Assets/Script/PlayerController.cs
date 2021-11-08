@@ -151,8 +151,8 @@ public class PlayerController : MonoBehaviour
         {
             if (other.gameObject.CompareTag("downGround"))
             {
+                StartCoroutine(gameOver());
                 killPlayer();
-                //gameOver.SetActive
             }
         }
 
@@ -194,8 +194,8 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator gameOver()
     {
-        yield return new WaitForSeconds(3f);
-        //SceneManager.LoadScene(5);
+        SoundManager.Instance.PlayMusic(Sounds.PlayerDeath);
+        yield return new WaitForSeconds(2f);
         gameover.SetActive(true);
     }
 
